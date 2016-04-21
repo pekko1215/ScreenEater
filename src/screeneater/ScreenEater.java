@@ -201,7 +201,7 @@ public class ScreenEater implements Runnable {
 		}
 
 		nowColor = new Color((int)(Math.sin(3.14/360*counter)*255)%255,
-				0,
+				1,
 				0);
 		counter++;
 		if (counter == 360) {
