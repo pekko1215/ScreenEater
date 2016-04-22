@@ -84,7 +84,7 @@ public class ScreenEater implements Runnable {
 	public void run() {
 		while (th != null) {
 			try {
-				Thread.sleep(56 / 4 / 2 / 7);
+				Thread.sleep(56 / 4 / 2 /7);
 			} catch (InterruptedException ex) {
 			}
 			check();
@@ -107,7 +107,7 @@ public class ScreenEater implements Runnable {
 		for (int index = 0; index < c; index++) {
 			boolean mark = false;
 			Point point = celllist.get(index);
-			if (celllist.get(index).x > 0
+			if (point.x > 0
 					&& nowtable.getTable(point.x - 1, point.y) == 0
 					&& celllist.indexOf(new Point(point.x - 1, point.y)) == -1) {
 				mark = true;
@@ -121,7 +121,7 @@ public class ScreenEater implements Runnable {
 					celllist.add(new Point(point.x - 1, point.y));
 				}
 			}
-			if (celllist.get(index).x - 1 < screenSize.x
+			if (point.x + 1 < screenSize.x
 					&& nowtable.getTable(point.x + 1, point.y) == 0
 					&& celllist.indexOf(new Point(point.x + 1, point.y)) == -1) {
 				mark = true;
@@ -135,7 +135,7 @@ public class ScreenEater implements Runnable {
 					celllist.add(new Point(point.x + 1, point.y));
 				}
 			}
-			if (celllist.get(index).y > 0
+			if (point.y > 0
 					&& nowtable.getTable(point.x, point.y - 1) == 0
 					&& celllist.indexOf(new Point(point.x, point.y - 1)) == -1) {
 				mark = true;
@@ -149,7 +149,7 @@ public class ScreenEater implements Runnable {
 					celllist.add(new Point(point.x, point.y - 1));
 				}
 			}
-			if (celllist.get(index).y < screenSize.y - 1
+			if (point.y < screenSize.y + 1
 					&& nowtable.getTable(point.x, point.y + 1) == 0
 					&& celllist.indexOf(new Point(point.x, point.y + 1)) == -1) {
 				mark = true;
@@ -183,26 +183,15 @@ public class ScreenEater implements Runnable {
 
 	public void painting() {
 		Graphics gra = image.getGraphics();
-		for (int x = 0; x < screenSize.x; x++) {
-			for (int y = 0; y < screenSize.y; y++) {
-				if (nowtable.getTable(x, y) == (byte) 1) {
-					// System.out.println("x="+x+",y="+y);
-					/*
-					 * int xtmp = Math.abs(startPos.x-x); int ytmp =
-					 * Math.abs(startPos.y-y); int ctmp = (int)
-					 * (Math.hypot(xtmp,
-					 * ytmp)/Math.hypot(screenSize.x/2,screenSize.y/2)*255);
-					 * nowColor = new Color(255-ctmp,0,0);
-					 */
+		for (int index = 0; index < celllist.size(); index++) {
 					gra.setColor(nowColor);
-					gra.fillRect(x, y, 1, 1);
-				}
-			}
+					gra.fillRect(celllist.get(index).x, celllist.get(index).y, 1, 1);
 		}
 
-		nowColor = new Color(255,
-				255,
-				255);
+		nowColor = new Color((int)Math.abs(Math.sin(counter/(32*Math.PI))*255)/2,
+				0,
+				0);
+		//nowColor = Color.black;
 		counter++;
 		if (counter == 360) {
 			counter = 0;
