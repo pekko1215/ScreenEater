@@ -200,9 +200,9 @@ public class ScreenEater implements Runnable {
 			}
 		}
 
-		nowColor = new Color((int)(Math.sin(3.14/360*counter)*255)%255,
-				1,
-				0);
+		nowColor = new Color(255,
+				255,
+				255);
 		counter++;
 		if (counter == 360) {
 			counter = 0;
@@ -241,60 +241,4 @@ class DrawingCanvas extends Canvas {
 	}
 }
 
-class ColorTable {
-	Byte tables[][];
-	Point size;
 
-	ColorTable(int x, int y) {
-		tables = new Byte[x][y];
-		size = new Point(x, y);
-		reset();
-	}
-
-	public void reset() {
-		for (int x = 0; x < size.x; x++) {
-			for (int y = 0; y < size.y; y++) {
-				tables[x][y] = 0;
-			}
-		}
-	}
-
-	public void setTable(int x, int y, int p) {
-		tables[x][y] = (byte) (0x000000ff & (p));
-	}
-
-	public Byte getTable(int x, int y) {
-		return tables[x][y];
-	}
-
-	public void setTable(Point point, int p) {
-		tables[point.x][point.y] = (byte) (0x000000ff & (p));
-	}
-
-	public Byte getTable(Point point) {
-		return tables[point.x][point.y];
-	}
-
-}
-
-/*
- * public class ScreenEater { public static void main(String[] args) { // TODO
- * 自動生成されたメソッド・スタブ main m = new main(); m.init(); }
- * 
- * 
- * }
- * 
- * class main{ Graphics nowGraph; SplashScreen nowScreen;
- * 
- * void init(){ BufferedImage image = null; nowScreen =
- * SplashScreen.getSplashScreen(); try { image = new
- * Robot().createScreenCapture(new
- * Rectangle(Toolkit.getDefaultToolkit().getScreenSize()));
- * 
- * } catch (HeadlessException e) { // TODO 自動生成された catch ブロック
- * e.printStackTrace(); } catch (AWTException e) { // TODO 自動生成された catch ブロック
- * e.printStackTrace(); } Graphics gtmp = image.getGraphics(); Graphics gtmp2 =
- * nowScreen.createGraphics();
- * 
- * gtmp2 = gtmp; nowScreen.update(); } }
- */

@@ -7,6 +7,17 @@ import java.awt.event.MouseListener;
 public class muListener implements MouseListener{
 	  public void mouseClicked(MouseEvent e){
 		  if(e.isShiftDown()){
+			  /*
+			  try {	
+				File savetable = new File("tables.txt");
+				FileWriter filewriter  =  new FileWriter(savetable);
+				filewriter.write(ScreenEater.nowtable.toString());
+				filewriter.close();
+			} catch (IOException e1) {
+				// TODO 自動生成された catch ブロック
+				e1.printStackTrace();
+			}
+			  */
 			  System.exit(0);
 		  }else{
 			ScreenEater.celllist.add(MouseInfo.getPointerInfo().getLocation());
